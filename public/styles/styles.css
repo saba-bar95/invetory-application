@@ -1,0 +1,267 @@
+:root {
+  --ink: #1a2b3c;
+  --muted: #5a6d7e;
+  --accent: #0d9488;
+  --accent-deep: #0f766e;
+  --highlight: #f59e0b;
+  --surface: rgba(255, 255, 255, 0.78);
+  --line: rgba(26, 43, 60, 0.12);
+  --shadow: 0 18px 40px rgba(15, 40, 55, 0.12);
+  --radius: 1rem;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-size: 17px;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(
+      ellipse 80% 50% at 10% -10%,
+      rgba(13, 148, 136, 0.22),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 70% 45% at 100% 0%,
+      rgba(245, 158, 11, 0.18),
+      transparent 50%
+    ),
+    linear-gradient(165deg, #e8f4f2 0%, #f7f3ea 45%, #dfe9f2 100%);
+  background-attachment: fixed;
+  background-size:
+    100% 100%,
+    100% 100%,
+    120% 120%;
+  animation: bg-drift 18s ease-in-out infinite alternate;
+}
+
+main.container {
+  max-width: 40rem;
+  margin-block: 3rem;
+  padding: 2rem 1.75rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 0.25rem);
+  box-shadow: var(--shadow);
+}
+
+h1,
+h2 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+h1 {
+  margin-bottom: 1.1rem;
+  text-align: center;
+  font-size: clamp(1.65rem, 3.5vw, 2.1rem);
+  background: linear-gradient(120deg, var(--ink) 30%, var(--accent-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: var(--ink);
+  text-transform: capitalize;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.1rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+li > div {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.65);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+li > div:hover {
+  transform: translateY(-3px) scale(1.01);
+  border-color: rgba(13, 148, 136, 0.4);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 28px rgba(13, 148, 136, 0.14);
+}
+
+p {
+  margin: 0 0 0.45rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+p span {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+a {
+  color: var(--accent-deep);
+  font-weight: 600;
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 2px;
+  transition:
+    color 0.2s ease,
+    background-size 0.25s ease;
+}
+
+a:hover {
+  color: var(--accent);
+  background-size: 100% 2px;
+}
+
+main.container > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.25rem;
+  padding: 0.55rem 1.05rem;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  background-image: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  background-size: auto;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.28);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+main.container > a:hover {
+  color: #fff;
+  background-size: auto;
+  transform: translateY(-2px) scale(1.03);
+  filter: brightness(1.06);
+  box-shadow: 0 12px 26px rgba(13, 148, 136, 0.38);
+  animation: pulse-glow 1.2s ease-in-out infinite;
+}
+
+main.container > a:active {
+  transform: translateY(0) scale(0.98);
+  animation: none;
+}
+
+form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+label {
+  margin: 0;
+}
+
+input[type="text"] {
+  border-radius: 0.75rem;
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 1rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+input[type="text"]::placeholder {
+  color: var(--muted);
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+input[type="text"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+  transform: scale(1.01);
+}
+
+button[type="submit"] {
+  margin-top: 0.35rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--highlight), #d97706);
+  color: #1a1205;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(245, 158, 11, 0.4);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@keyframes bg-drift {
+  from {
+    background-position:
+      0% 0%,
+      100% 0%,
+      0% 0%;
+  }
+  to {
+    background-position:
+      8% 4%,
+      92% 6%,
+      100% 100%;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 12px 26px rgba(13, 148, 136, 0.38);
+  }
+  50% {
+    box-shadow: 0 12px 30px rgba(13, 148, 136, 0.55);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  main.container > a:hover {
+    animation: none;
+  }
+
+  li > div,
+  a,
+  input[type="text"],
+  button[type="submit"],
+  main.container > a {
+    transition: none;
+  }
+}
