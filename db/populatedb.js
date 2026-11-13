@@ -1,9 +1,12 @@
 #! /usr/bin/env node
 import path from "path";
+import { fileURLToPath } from "url";
 import { Client } from "pg";
 import dotenv from "dotenv";
 
-dotenv.config({ path: path.join(import.meta.dirname, "../.env") });
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.join(__dirname, "../.env") });
+
 
 const connectionString = process.env.DATABASE_URL;
 

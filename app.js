@@ -1,21 +1,23 @@
 import express from "express";
 import path from "path";
+import { fileURLToPath } from "url";
 import indexRouter from "./routes/indexRouter.js";
 import categoryRouter from "./routes/categoryRouter.js";
 import itemRouter from "./routes/itemRouter.js";
 import PageNotFound from "./errors/pageNotFound.js";
 import dotenv from "dotenv";
 
-dotenv.config({ path: path.join(import.meta.dirname, ".env") });
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.join(__dirname, ".env") });
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-const __dirname = path.resolve();
 const viewsPath = path.join(__dirname, "views");
 
 app.set("views", viewsPath);
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
+
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", indexRouter);

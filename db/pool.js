@@ -1,9 +1,10 @@
 import dotenv from "dotenv";
 import pg from "pg";
 import path from "path";
+import { fileURLToPath } from "url";
 
-// Tell dotenv to look one level up (../) for the .env file
-dotenv.config({ path: path.join(import.meta.dirname, "../.env") });
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.join(__dirname, "../.env") });
 
 const { Pool } = pg;
 
@@ -16,4 +17,3 @@ if (!connectionString) {
 }
 
 export default new Pool({ connectionString });
-

@@ -9,7 +9,7 @@
     "populate": "node db/populatedb.js"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=18.18.0"
   },
   "dependencies": {
     "@picocss/pico": "^2.1.1",
