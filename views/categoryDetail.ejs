@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head', { title: category.name }) %>
+  </head>
+  <body>
+    <main class="container">
+      <a href="/">Back to categories</a>
+      <h1><%= category.name %></h1>
+      <% if (category.description) { %>
+        <p class="lede"><%= category.description %></p>
+      <% } %>
+
+      <div class="actions">
+        <a href="/items/new?category_id=<%= category.id %>">Add item</a>
+        <a class="secondary" href="/categories/<%= category.id %>/edit"
+          >Edit category</a
+        >
+        <form
+          action="/categories/<%= category.id %>/delete"
+          method="POST"
+          onsubmit="return confirm('Delete this category?')"
+        >
+          <button type="submit" class="danger">Delete category</button>
+        </form>
+      </div>
+
+      <h2>Items</h2>
+      <% if (!items.length) { %>
+        <p>No items in this category yet.</p>
+      <% } else { %>
+        <ul>
+          <% items.forEach((item) => { %>
+            <li>
+              <div>
+                <p>
+                  <span
+                    ><a href="/items/<%= item.id %>"><%= item.name %></a></span
+                  >
+                </p>
+                <p>
+                  Qty: <%= item.quantity %> · $<%= Number(item.price).toFixed(2) %>
+                </p>
+                <div class="row-actions">
+                  <a href="/items/<%= item.id %>/edit">Edit</a>
+                  <form
+                    action="/items/<%= item.id %>/delete"
+                    method="POST"
+                    onsubmit="return confirm('Delete this item?')"
+                  >
+                    <button type="submit" class="danger">Delete</button>
+                  </form>
+                </div>
+              </div>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </main>
+  </body>
+</html>

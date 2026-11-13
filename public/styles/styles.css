@@ -41,13 +41,148 @@ body {
 }
 
 main.container {
-  max-width: 40rem;
+  max-width: 42rem;
   margin-block: 3rem;
   padding: 2rem 1.75rem;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: calc(var(--radius) + 0.25rem);
   box-shadow: var(--shadow);
+}
+
+.lede {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+  margin: 1rem 0 1.5rem;
+}
+
+.actions form {
+  display: inline;
+  margin: 0;
+}
+
+.actions > a,
+.actions form > button,
+main.container > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.25rem;
+  padding: 0.55rem 1.05rem;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  background-image: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  background-size: auto;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.28);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.actions > a:hover,
+.actions form > button:hover,
+main.container > a:hover {
+  color: #fff;
+  background-size: auto;
+  transform: translateY(-2px) scale(1.03);
+  filter: brightness(1.06);
+  box-shadow: 0 12px 26px rgba(13, 148, 136, 0.38);
+}
+
+.actions > a.secondary {
+  background: transparent;
+  background-image: none;
+  color: var(--accent-deep);
+  border: 1px solid rgba(13, 148, 136, 0.35);
+  box-shadow: none;
+}
+
+.actions > a.secondary:hover {
+  color: var(--accent);
+  background: rgba(13, 148, 136, 0.08);
+  filter: none;
+  box-shadow: none;
+}
+
+.actions form > button.danger,
+.row-actions button.danger {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  box-shadow: 0 8px 20px rgba(185, 28, 28, 0.25);
+}
+
+.row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.row-actions form {
+  display: inline;
+  margin: 0;
+}
+
+.row-actions a {
+  font-size: 0.9rem;
+}
+
+.row-actions button.danger {
+  padding: 0.25rem 0.7rem;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.error-list {
+  list-style: none;
+  padding: 0.85rem 1rem;
+  margin: 0 0 1rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(185, 28, 28, 0.25);
+  background: rgba(254, 226, 226, 0.7);
+  color: #991b1b;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.meta-list {
+  margin-bottom: 1.25rem;
+}
+
+textarea,
+input[type="number"],
+select {
+  border-radius: 0.75rem;
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+textarea:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
 }
 
 h1,
@@ -132,39 +267,10 @@ a:hover {
   background-size: 100% 2px;
 }
 
-main.container > a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-bottom: 0.25rem;
-  padding: 0.55rem 1.05rem;
-  font-size: 0.95rem;
-  border: none;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
-  background-image: linear-gradient(135deg, var(--accent), var(--accent-deep));
-  background-size: auto;
-  color: #fff;
-  font-weight: 700;
-  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.28);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    filter 0.2s ease;
-}
-
-main.container > a:hover {
-  color: #fff;
-  background-size: auto;
-  transform: translateY(-2px) scale(1.03);
-  filter: brightness(1.06);
-  box-shadow: 0 12px 26px rgba(13, 148, 136, 0.38);
-  animation: pulse-glow 1.2s ease-in-out infinite;
-}
-
-main.container > a:active {
+main.container > a:active,
+.actions > a:active,
+.actions form > button:active {
   transform: translateY(0) scale(0.98);
-  animation: none;
 }
 
 form {

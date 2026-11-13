@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head', { title }) %>
+  </head>
+  <body>
+    <main class="container">
+      <a href="<%= category && category.id ? `/categories/${category.id}` : '/' %>"
+        >Cancel</a
+      >
+      <h1><%= title %></h1>
+
+      <% if (errors && errors.length) { %>
+        <ul class="error-list">
+          <% errors.forEach((error) => { %>
+            <li><%= error.msg %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+
+      <form action="<%= action %>" method="POST">
+        <label>
+          Name
+          <input
+            type="text"
+            name="name"
+            required
+            maxlength="100"
+            value="<%= category?.name || '' %>"
+          />
+        </label>
+        <label>
+          Description
+          <textarea name="description" rows="3" maxlength="1000"
+            ><%= category?.description || '' %></textarea
+          >
+        </label>
+        <button type="submit">Save category</button>
+      </form>
+    </main>
+  </body>
+</html>

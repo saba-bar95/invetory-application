@@ -1,9 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Invetory Application</title>
+    <%- include('partials/head', { title: "Categories" }) %>
   </head>
-  <body></body>
+  <body>
+    <main class="container">
+      <h1>Inventory</h1>
+      <p class="lede">Choose a category to browse its items.</p>
+
+      <div class="actions">
+        <a href="/categories/new">New category</a>
+        <a class="secondary" href="/items/new">New item</a>
+      </div>
+
+      <% if (!categories.length) { %>
+        <p>No categories yet. Create one to get started.</p>
+      <% } else { %>
+        <ul>
+          <% categories.forEach((category) => { %>
+            <li>
+              <div>
+                <p>
+                  <span
+                    ><a href="/categories/<%= category.id %>"
+                      ><%= category.name %></a
+                    ></span
+                  >
+                </p>
+                <% if (category.description) { %>
+                  <p><%= category.description %></p>
+                <% } %>
+                <p><%= category.item_count %> item<%= category.item_count === 1 ? "" : "s" %></p>
+                <div class="row-actions">
+                  <a href="/categories/<%= category.id %>/edit">Edit</a>
+                  <form
+                    action="/categories/<%= category.id %>/delete"
+                    method="POST"
+                    onsubmit="return confirm('Delete this category?')"
+                  >
+                    <button type="submit" class="danger">Delete</button>
+                  </form>
+                </div>
+              </div>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </main>
+  </body>
 </html>

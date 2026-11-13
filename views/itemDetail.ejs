@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head', { title: item.name }) %>
+  </head>
+  <body>
+    <main class="container">
+      <a href="/categories/<%= item.category_id %>">Back to category</a>
+      <h1><%= item.name %></h1>
+      <% if (item.description) { %>
+        <p class="lede"><%= item.description %></p>
+      <% } %>
+
+      <ul class="meta-list">
+        <li>
+          <div>
+            <p>Category</p>
+            <p>
+              <span
+                ><a href="/categories/<%= item.category_id %>"
+                  ><%= item.category_name %></a
+                ></span
+              >
+            </p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p>Quantity</p>
+            <p><span><%= item.quantity %></span></p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p>Price</p>
+            <p><span>$<%= Number(item.price).toFixed(2) %></span></p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="actions">
+        <a href="/items/<%= item.id %>/edit">Edit item</a>
+        <form
+          action="/items/<%= item.id %>/delete"
+          method="POST"
+          onsubmit="return confirm('Delete this item?')"
+        >
+          <button type="submit" class="danger">Delete item</button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
